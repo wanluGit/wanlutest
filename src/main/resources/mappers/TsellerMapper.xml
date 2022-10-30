@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.TsellerMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.pojo.Tseller">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="district" jdbcType="VARCHAR" property="district" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="per" jdbcType="INTEGER" property="per" />
+    <result column="del_flg" jdbcType="CHAR" property="delFlg" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="comments" jdbcType="VARCHAR" property="comments" />
+
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, tel, type, district, address, per, del_flg, create_time, update_time, comments
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_seller
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_seller
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.pojo.Tseller">
+    insert into t_seller (id, name, tel, 
+      type, district, address, 
+      per, del_flg, create_time, 
+      update_time, comments)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{per,jdbcType=INTEGER}, #{delFlg,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{comments,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.pojo.Tseller">
+    insert into t_seller
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="tel != null">
+        tel,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="district != null">
+        district,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="per != null">
+        per,
+      </if>
+      <if test="delFlg != null">
+        del_flg,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="comments != null">
+        comments,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="per != null">
+        #{per,jdbcType=INTEGER},
+      </if>
+      <if test="delFlg != null">
+        #{delFlg,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comments != null">
+        #{comments,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.pojo.Tseller">
+    update t_seller
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        district = #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="per != null">
+        per = #{per,jdbcType=INTEGER},
+      </if>
+      <if test="delFlg != null">
+        del_flg = #{delFlg,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comments != null">
+        comments = #{comments,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.pojo.Tseller">
+    update t_seller
+    set name = #{name,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      district = #{district,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      per = #{per,jdbcType=INTEGER},
+      del_flg = #{delFlg,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      comments = #{comments,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <sql id="queryWhere">
+    <where>
+      <if test="query.id != null and query.id.length()>0">
+        id like concat(concat('%',#{query.id}),'%')
+      </if>
+      <if test="query.name != null and query.name.length()>0">
+        and name like concat(concat('%',#{query.name}),'%')
+      </if>
+      <if test="query.tel != null and query.tel.length()>0">
+        and tel=#{query.tel}
+      </if>
+      <if test="query.type != null and query.type.length()>0">
+        and type=#{query.type}
+      </if>
+      <if test="query.district != null and query.district.length()>0">
+        and district=#{query.district}
+      </if>
+      <if test="query.address != null and query.address.length()>0">
+        and address like concat(concat('%',#{query.address}),'%')
+      </if>
+      <if test="query.perBegin != null
+  		and query.perBegin>=0
+  		and query.perEnd != null
+  		and query.perEnd >=query.perBegin">
+        and (per between #{query.perBegin} and #{query.perEnd})
+      </if>
+      and del_flg='0'
+    </where>
+  </sql>
+
+  <!-- 分页相关：返回符合条件的某个区间的数据 -->
+  <select id="selectPage" resultType="com.example.demo.pojo.Tseller">
+  	select id, name, tel, type, district, address, per, del_flg,
+  	 create_time, update_time, comments 
+  	 from t_seller
+  	 <include refid="queryWhere" />
+  </select>
+  
+  <delete id="deleteIds" >
+  	update t_seller 
+  	set del_flg='1' 
+  	where id in 
+  	<foreach item="item" index="index" collection="array"
+      open="(" separator="," close=")">
+        #{item}
+  	</foreach>
+  	
+  </delete>
+  
+  
+</mapper>
